@@ -191,6 +191,39 @@
             box-shadow: 0 10px 30px rgba(229, 9, 20, 0.4);
         }
 
+        .content-card:hover .card-description {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-description {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 80%, transparent 100%);
+            color: #fff;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #e50914;
+        }
+
+        .card-text {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #d1d1d1;
+        }
+
         .card-placeholder {
             width: 100%;
             height: 100%;
@@ -436,18 +469,38 @@
         <div class="content-row featured">
             <div class="content-card tall" id="cap-piloto">
                 <img src="Imagenes/Cap_piloto_portada.png" alt="Blood Titans - Capítulo Piloto" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="card-description">
+                    <div class="card-title">Capítulo Piloto</div>
+                    <div class="card-text">El inicio de la historia. Tres seres inmortales llegan a la Tierra desde Marte.</div>
+                </div>
             </div>
             <div class="content-card image-card">
                 <img src="Imagenes/Dibujorodri.jpeg" alt="Blood Titans - Dibujo Rodri" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="card-description">
+                    <div class="card-title">Concepto remake por Ross</div>
+                    <div class="card-text">Primeros bocetos remake del personaje para la serie.</div>
+                </div>
             </div>
             <div class="content-card image-card">
                 <img src="Imagenes/Primerospersonajes.jpeg" alt="Blood Titans - Primeros Personajes" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="card-description">
+                    <div class="card-title">Los Protagonistas</div>
+                    <div class="card-text">El39, Tron , JL y Crastaco - Los cuatro sobrevivientes de Marte.</div>
+                </div>
             </div>
             <div class="content-card image-card">
                 <img src="Imagenes/jl.jpg" alt="Blood Titans - JL" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="card-description">
+                    <div class="card-title">JL</div>
+                    <div class="card-text">El personaje que se comunica mediante gemidos .</div>
+                </div>
             </div>
             <div class="content-card image-card">
                 <img src="Imagenes/dfg.jpg" alt="Blood Titans" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="card-description">
+                    <div class="card-title">El 39</div>
+                    <div class="card-text">Una de las primeras ilustraciones.</div>
+                </div>
             </div>
         </div>
     </section>
@@ -458,6 +511,10 @@
         <div class="content-row">
             <div class="content-card tall image-card">
                 <img src="Imagenes/WhatsApp Image 2026-01-02 at 7.37.04 PM.jpeg" alt="Arte EDD40" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="card-description">
+                    <div class="card-title">Recarco de personajes de ross</div>
+                    <div class="card-text">Creación artística fan de los personajes de Ross.</div>
+                </div>
             </div>
             <div class="content-card">
                 <div class="card-placeholder">Próximamente</div>
@@ -499,6 +556,10 @@
                 <div class="video-overlay">
                     <div class="video-play-button">▶ Ver Video</div>
                 </div>
+                <div class="card-description">
+                    <div class="card-title">Video de Prueba</div>
+                    <div class="card-text">Contenido audiovisual de mis proyectos y proceso creativo.</div>
+                </div>
             </div>
             <div class="content-card medium">
                 <div class="card-placeholder">Próximamente</div>
@@ -515,15 +576,31 @@
         <div class="content-row">
             <div class="content-card image-card">
                 <img src="Imagenes/YO/20240607_123344.jpg" alt="EDD40" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="card-description">
+                    <div class="card-title">EDD40</div>
+                    <div class="card-text">El creador detrás de todo esto.</div>
+                </div>
             </div>
             <div class="content-card image-card">
                 <img src="Imagenes/YO/20240830_081445.jpg" alt="EDD40" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="card-description">
+                    <div class="card-title">El golpe</div>
+                    <div class="card-text">La mejor foto que mi hermana me pudo sacar.</div>
+                </div>
             </div>
             <div class="content-card image-card">
                 <img src="Imagenes/YO/6FC74AD5-174E-40EF-BAE9-12F42CDBF5ED.jpg" alt="EDD40" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="card-description">
+                    <div class="card-title">Pose de messi</div>
+                    <div class="card-text">Pelo mas brocoli que tenia xd.</div>
+                </div>
             </div>
             <div class="content-card image-card">
                 <img src="Imagenes/YO/IMG_0765.JPG" alt="EDD40" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="card-description">
+                    <div class="card-title">Mi Espacio</div>
+                    <div class="card-text">Me gusta las computadoras , amo estar en cibers solitarios y frios , tambien un poco oscuros mientras veo algo.</div>
+                </div>
             </div>
         </div>
     </section>
