@@ -19,6 +19,41 @@
             overflow-x: hidden;
         }
 
+        /* Partículas de fondo */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(229, 9, 20, 0.8), transparent);
+            border-radius: 50%;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
         /* Header/Navbar */
         .navbar {
             position: fixed;
@@ -31,11 +66,14 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .navbar.scrolled {
             background: rgba(0,0,0,0.95);
+            padding: 15px 50px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 30px rgba(229, 9, 20, 0.3);
         }
 
         /* Hero Section */
@@ -58,6 +96,12 @@
             filter: blur(10px) brightness(0.3);
             z-index: 0;
             transform: scale(1.1);
+            animation: slowZoom 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes slowZoom {
+            0% { transform: scale(1.1); }
+            100% { transform: scale(1.2); }
         }
 
         .hero::after {
@@ -80,22 +124,28 @@
         }
 
         .title-animated {
-            font-size: 6rem;
+            font-size: clamp(3rem, 8vw, 6rem);
             font-weight: 900;
             margin-bottom: 20px;
-            background: linear-gradient(45deg, #e50914, #ff4757, #e50914);
-            background-size: 200% 200%;
+            background: linear-gradient(45deg, #e50914, #ff4757, #ff6b6b, #e50914);
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: gradientShift 3s ease infinite, fadeInUp 1s ease;
+            animation: gradientShift 4s ease infinite, fadeInUp 1s ease, textGlow 2s ease-in-out infinite;
             letter-spacing: 2px;
+            text-shadow: 0 0 30px rgba(229, 9, 20, 0.5);
         }
 
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+        }
+
+        @keyframes textGlow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(229, 9, 20, 0.5)); }
+            50% { filter: drop-shadow(0 0 20px rgba(229, 9, 20, 0.8)); }
         }
 
         @keyframes fadeInUp {
@@ -110,7 +160,7 @@
         }
 
         .subtitle {
-            font-size: 1.8rem;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
             font-weight: 300;
             margin-bottom: 25px;
             color: #f0f0f0;
@@ -118,7 +168,7 @@
         }
 
         .description {
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 2vw, 1.3rem);
             line-height: 1.8;
             max-width: 700px;
             margin-bottom: 40px;
@@ -130,15 +180,29 @@
         .content-section {
             padding: 80px 50px;
             background: #000;
+            position: relative;
+            z-index: 1;
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 4vw, 2.5rem);
             font-weight: 700;
             margin-bottom: 30px;
             color: #fff;
             position: relative;
             padding-bottom: 15px;
+            animation: slideInLeft 0.8s ease;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .section-title::after {
@@ -149,6 +213,12 @@
             width: 80px;
             height: 4px;
             background: linear-gradient(90deg, #e50914, transparent);
+            animation: expandWidth 1s ease;
+        }
+
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 80px; }
         }
 
         .content-row {
@@ -158,7 +228,6 @@
             margin-bottom: 50px;
         }
 
-        /* Variante de grid para diferentes secciones */
         .content-row.featured {
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         }
@@ -170,12 +239,13 @@
 
         .content-card {
             position: relative;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             background: #1a1a1a;
             height: 150px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .content-card.tall {
@@ -186,9 +256,27 @@
             height: 250px;
         }
 
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(229, 9, 20, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+            z-index: 1;
+        }
+
+        .content-card:hover::before {
+            transform: translateX(100%);
+        }
+
         .content-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(229, 9, 20, 0.4);
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(229, 9, 20, 0.4), 0 0 30px rgba(229, 9, 20, 0.2);
+            border: 2px solid rgba(229, 9, 20, 0.3);
         }
 
         .content-card:hover .card-description {
@@ -233,9 +321,25 @@
             justify-content: center;
             color: #666;
             font-size: 1rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Modales */
+        .card-placeholder::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(229, 9, 20, 0.05), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        /* Modales mejorados */
         .video-modal,
         .image-modal {
             position: fixed;
@@ -249,6 +353,7 @@
             align-items: center;
             justify-content: center;
             animation: fadeIn 0.3s ease;
+            backdrop-filter: blur(5px);
         }
 
         .video-modal.active,
@@ -276,7 +381,7 @@
             max-height: 85vh;
             border-radius: 12px;
             box-shadow: 0 30px 80px rgba(229, 9, 20, 0.6);
-            animation: zoomIn 0.4s ease;
+            animation: zoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         @keyframes zoomIn {
@@ -290,6 +395,67 @@
             }
         }
 
+        /* Controles de galería */
+        .gallery-controls {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            z-index: 10002;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 25px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateX(-50%) translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .gallery-btn {
+            background: #e50914;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
+        }
+
+        .gallery-btn:hover {
+            background: #ff1a1a;
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(229, 9, 20, 0.5);
+        }
+
+        .gallery-btn:active {
+            transform: scale(0.95);
+        }
+
+        .gallery-counter {
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0 15px;
+            min-width: 80px;
+            text-align: center;
+        }
+
         .meme-gif {
             position: fixed;
             top: 20px;
@@ -300,7 +466,7 @@
             box-shadow: 0 10px 30px rgba(229, 9, 20, 0.5);
             border: 3px solid #e50914;
             object-fit: cover;
-            animation: bounceIn 0.6s ease;
+            animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             z-index: 10002;
         }
 
@@ -310,7 +476,7 @@
                 opacity: 0;
             }
             50% {
-                transform: scale(1.1) rotate(10deg);
+                transform: scale(1.2) rotate(10deg);
             }
             100% {
                 transform: scale(1) rotate(0deg);
@@ -340,6 +506,10 @@
             transform: scale(1.1);
         }
 
+        .close-modal:active {
+            transform: scale(0.95);
+        }
+
         /* Video overlay */
         .video-overlay {
             position: absolute;
@@ -366,6 +536,7 @@
             font-size: 1.2rem;
             font-weight: 700;
             transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(229, 9, 20, 0.5);
         }
 
         .video-overlay:hover .video-play-button {
@@ -375,32 +546,78 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .title-animated {
-                font-size: 3.5rem;
-            }
-            .subtitle {
-                font-size: 1.3rem;
-            }
-            .description {
-                font-size: 1.1rem;
-            }
             .content,
             .content-section {
-                padding: 40px 30px;
+                padding: 40px 20px;
             }
+            
             .navbar {
-                padding: 15px 30px;
+                padding: 15px 20px;
             }
+
+            .navbar.scrolled {
+                padding: 10px 20px;
+            }
+            
             .meme-gif {
                 width: 100px;
                 height: 100px;
                 top: 10px;
                 right: 10px;
             }
+            
+            .content-row,
+            .content-row.featured {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+            }
+
+            .content-row.compact {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 10px;
+            }
+
+            .gallery-controls {
+                bottom: 20px;
+                padding: 10px 15px;
+                gap: 10px;
+            }
+
+            .gallery-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+
+            .gallery-counter {
+                font-size: 0.9rem;
+                min-width: 60px;
+                padding: 0 10px;
+            }
+
+            .close-modal {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+
+            .content-card.tall {
+                height: 250px;
+            }
+
+            .content-card.medium {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
             .content-row,
             .content-row.featured,
             .content-row.compact {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                grid-template-columns: 1fr;
+            }
+
+            .meme-gif {
+                width: 80px;
+                height: 80px;
             }
         }
 
@@ -424,10 +641,24 @@
             content: '⌄';
             font-size: 3rem;
             color: rgba(255,255,255,0.7);
+            filter: drop-shadow(0 0 10px rgba(229, 9, 20, 0.5));
+        }
+
+        /* Efecto de brillo en imágenes */
+        .content-card img {
+            transition: all 0.4s ease;
+        }
+
+        .content-card:hover img {
+            filter: brightness(1.1) contrast(1.05);
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
+    <!-- Partículas -->
+    <div class="particles" id="particles"></div>
+
     <!-- Navbar -->
     <nav class="navbar" id="navbar"></nav>
 
@@ -461,6 +692,11 @@
         <div class="modal-content-wrapper">
             <img class="modal-image" id="modalImage" src="" alt="Imagen ampliada">
         </div>
+        <div class="gallery-controls">
+            <button class="gallery-btn" id="prevBtn">← Anterior</button>
+            <span class="gallery-counter" id="galleryCounter">1 / 1</span>
+            <button class="gallery-btn" id="nextBtn">Siguiente →</button>
+        </div>
     </div>
 
     <!-- Sección BLOOODTITANS -->
@@ -474,28 +710,28 @@
                     <div class="card-text">El inicio de la historia. Tres seres inmortales llegan a la Tierra desde Marte.</div>
                 </div>
             </div>
-            <div class="content-card image-card">
+            <div class="content-card image-card" data-gallery="blooodtitans">
                 <img src="Imagenes/Dibujorodri.jpeg" alt="Blood Titans - Dibujo Rodri" style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="card-description">
                     <div class="card-title">Concepto remake por Ross</div>
                     <div class="card-text">Primeros bocetos remake del personaje para la serie.</div>
                 </div>
             </div>
-            <div class="content-card image-card">
+            <div class="content-card image-card" data-gallery="blooodtitans">
                 <img src="Imagenes/Primerospersonajes.jpeg" alt="Blood Titans - Primeros Personajes" style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="card-description">
                     <div class="card-title">Los Protagonistas</div>
                     <div class="card-text">El39, Tron , JL y Crastaco - Los cuatro sobrevivientes de Marte.</div>
                 </div>
             </div>
-            <div class="content-card image-card">
+            <div class="content-card image-card" data-gallery="blooodtitans">
                 <img src="Imagenes/jl.jpg" alt="Blood Titans - JL" style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="card-description">
                     <div class="card-title">JL</div>
                     <div class="card-text">El personaje que se comunica mediante gemidos .</div>
                 </div>
             </div>
-            <div class="content-card image-card">
+            <div class="content-card image-card" data-gallery="blooodtitans">
                 <img src="Imagenes/dfg.jpg" alt="Blood Titans" style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="card-description">
                     <div class="card-title">El 39</div>
@@ -509,7 +745,7 @@
     <section class="content-section">
         <h2 class="section-title">Arte</h2>
         <div class="content-row">
-            <div class="content-card tall image-card">
+            <div class="content-card tall image-card" data-gallery="arte">
                 <img src="Imagenes/WhatsApp Image 2026-01-02 at 7.37.04 PM.jpeg" alt="Arte EDD40" style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="card-description">
                     <div class="card-title">Recarco de personajes de ross</div>
@@ -574,38 +810,51 @@
     <section class="content-section">
         <h2 class="section-title">Yo :p</h2>
         <div class="content-row">
-            <div class="content-card image-card">
+            <div class="content-card image-card" data-gallery="yo">
                 <img src="Imagenes/YO/20240607_123344.jpg" alt="EDD40" style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="card-description">
                     <div class="card-title">EDD40</div>
                     <div class="card-text">El creador detrás de todo esto.</div>
                 </div>
             </div>
-            <div class="content-card image-card">
+            <div class="content-card image-card" data-gallery="yo">
                 <img src="Imagenes/YO/20240830_081445.jpg" alt="EDD40" style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="card-description">
                     <div class="card-title">El golpe</div>
                     <div class="card-text">La mejor foto que mi hermana me pudo sacar.</div>
                 </div>
             </div>
-            <div class="content-card image-card">
+            <div class="content-card image-card" data-gallery="yo">
                 <img src="Imagenes/YO/6FC74AD5-174E-40EF-BAE9-12F42CDBF5ED.jpg" alt="EDD40" style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="card-description">
                     <div class="card-title">Pose de messi</div>
                     <div class="card-text">Pelo mas brocoli que tenia xd.</div>
                 </div>
             </div>
-            <div class="content-card image-card">
+            <div class="content-card image-card" data-gallery="yo">
                 <img src="Imagenes/YO/IMG_0765.JPG" alt="EDD40" style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="card-description">
                     <div class="card-title">Mi Espacio</div>
-                    <div class="card-text">Me gusta las computadoras , amo estar en cibers solitarios y frios , tambien un poco oscuros mientras veo algo.</div>
+                    <div class="card-text">Me gusta las computadoras, amo estar en cibers solitarios y frios, tambien un poco oscuros mientras veo algo.</div>
                 </div>
             </div>
         </div>
     </section>
 
     <script>
+        // Crear partículas
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.width = Math.random() * 5 + 2 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = Math.random() * 10 + 10 + 's';
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            particlesContainer.appendChild(particle);
+        }
+
         // Array de GIFs de memes
         const memeGifs = [
             'https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif',
@@ -628,6 +877,80 @@
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Sistema de galería mejorado
+        let currentGallery = [];
+        let currentIndex = 0;
+
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const memeGif = document.getElementById('memeGif');
+        const closeModal = document.getElementById('closeModal');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const galleryCounter = document.getElementById('galleryCounter');
+
+        function updateGalleryCounter() {
+            galleryCounter.textContent = `${currentIndex + 1} / ${currentGallery.length}`;
+        }
+
+        function showImage(index) {
+            if (currentGallery.length === 0) return;
+            
+            currentIndex = (index + currentGallery.length) % currentGallery.length;
+            modalImage.src = currentGallery[currentIndex];
+            updateGalleryCounter();
+        }
+
+        prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showImage(currentIndex - 1);
+        });
+
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showImage(currentIndex + 1);
+        });
+
+        // Abrir capítulo piloto
+        document.getElementById('cap-piloto').addEventListener('click', () => {
+            window.open('pdfs/Cap_piloto.pdf', '_blank');
+        });
+
+        // Manejar clicks en imágenes
+        document.querySelectorAll('.image-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const img = card.querySelector('img');
+                if (img) {
+                    const gallery = card.getAttribute('data-gallery');
+                    
+                    // Obtener todas las imágenes de la misma galería
+                    currentGallery = Array.from(document.querySelectorAll(`.image-card[data-gallery="${gallery}"] img`))
+                        .map(imgEl => imgEl.src);
+                    
+                    // Encontrar el índice de la imagen clickeada
+                    currentIndex = currentGallery.indexOf(img.src);
+                    
+                    modalImage.src = img.src;
+                    memeGif.src = getRandomMeme();
+                    updateGalleryCounter();
+                    imageModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            imageModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        imageModal.addEventListener('click', (e) => {
+            if (e.target === imageModal) {
+                imageModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
         });
 
         // Modal de video
@@ -670,40 +993,6 @@
             }
         });
 
-        // Modal de imagen
-        const imageModal = document.getElementById('imageModal');
-        const modalImage = document.getElementById('modalImage');
-        const memeGif = document.getElementById('memeGif');
-        const closeModal = document.getElementById('closeModal');
-
-        document.getElementById('cap-piloto').addEventListener('click', () => {
-            window.open('pdfs/Cap_piloto.pdf', '_blank');
-        });
-
-        document.querySelectorAll('.image-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const img = card.querySelector('img');
-                if (img) {
-                    modalImage.src = img.src;
-                    memeGif.src = getRandomMeme();
-                    imageModal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                }
-            });
-        });
-
-        closeModal.addEventListener('click', () => {
-            imageModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
-
-        imageModal.addEventListener('click', (e) => {
-            if (e.target === imageModal) {
-                imageModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        });
-
         // Cerrar con ESC
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
@@ -717,6 +1006,32 @@
                     document.body.style.overflow = 'auto';
                 }
             }
+            // Navegación con flechas del teclado
+            if (imageModal.classList.contains('active')) {
+                if (e.key === 'ArrowLeft') {
+                    showImage(currentIndex - 1);
+                } else if (e.key === 'ArrowRight') {
+                    showImage(currentIndex + 1);
+                }
+            }
+        });
+
+        // Animación de entrada para las secciones
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.content-section').forEach(section => {
+            observer.observe(section);
         });
     </script>
 </body>
