@@ -484,18 +484,18 @@
         /* Controles de galería */
         .gallery-controls {
             position: fixed;
-            bottom: 40px;
+            bottom: 15px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 15px;
+            gap: 10px;
             align-items: center;
             z-index: 10002;
             background: rgba(0, 0, 0, 0.8);
-            padding: 15px 25px;
-            border-radius: 50px;
+            padding: 8px 15px;
+            border-radius: 30px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
             animation: slideUp 0.5s ease;
         }
 
@@ -514,19 +514,19 @@
             background: #e50914;
             color: white;
             border: none;
-            padding: 12px 20px;
-            border-radius: 25px;
-            font-size: 1rem;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3);
+            box-shadow: 0 3px 10px rgba(229, 9, 20, 0.3);
         }
 
         .gallery-btn:hover {
             background: #ff1a1a;
-            transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(229, 9, 20, 0.5);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(229, 9, 20, 0.5);
         }
 
         .gallery-btn:active {
@@ -535,10 +535,10 @@
 
         .gallery-counter {
             color: #fff;
-            font-size: 1rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            padding: 0 15px;
-            min-width: 80px;
+            padding: 0 10px;
+            min-width: 60px;
             text-align: center;
         }
 
@@ -665,20 +665,20 @@
             }
 
             .gallery-controls {
-                bottom: 20px;
-                padding: 10px 15px;
-                gap: 10px;
+                bottom: 10px;
+                padding: 6px 12px;
+                gap: 8px;
             }
 
             .gallery-btn {
-                padding: 10px 15px;
-                font-size: 0.9rem;
+                padding: 6px 12px;
+                font-size: 0.8rem;
             }
 
             .gallery-counter {
-                font-size: 0.9rem;
-                min-width: 60px;
-                padding: 0 10px;
+                font-size: 0.8rem;
+                min-width: 50px;
+                padding: 0 8px;
             }
 
             .close-modal {
@@ -694,12 +694,24 @@
                 height: 200px;
             }
 
+            .modal-content-wrapper {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .modal-image {
+                max-width: 90%;
+                max-height: 50vh;
+            }
+
             .modal-description {
-                padding: 15px 20px;
+                width: 90%;
+                max-width: 90%;
+                padding: 20px;
             }
 
             .modal-description .card-title {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
             }
 
             .modal-description .card-text {
@@ -808,10 +820,6 @@
         <div class="content-row featured">
             <div class="content-card tall" id="cap-piloto">
                 <img src="Imagenes/Cap_piloto_portada.png" alt="Blood Titans - Capítulo Piloto" style="width: 100%; height: 100%; object-fit: cover;">
-                <button class="like-button" data-item="blooodtitans-cap-piloto">
-                    <span class="heart">♡</span>
-                    <span class="count">0</span>
-                </button>
                 <div class="card-description">
                     <div class="card-title">Capítulo Piloto</div>
                     <div class="card-text">El inicio de la historia. Tres seres inmortales llegan a la Tierra desde Marte.</div>
@@ -819,10 +827,6 @@
             </div>
             <div class="content-card image-card" data-gallery="blooodtitans">
                 <img src="Imagenes/Dibujorodri.jpeg" alt="Blood Titans - Dibujo Rodri" style="width: 100%; height: 100%; object-fit: cover;">
-                <button class="like-button" data-item="blooodtitans-0">
-                    <span class="heart">♡</span>
-                    <span class="count">0</span>
-                </button>
                 <div class="card-description">
                     <div class="card-title">Concepto remake por Ross</div>
                     <div class="card-text">Primeros bocetos remake del personaje para la serie.</div>
@@ -830,10 +834,6 @@
             </div>
             <div class="content-card image-card" data-gallery="blooodtitans">
                 <img src="Imagenes/Primerospersonajes.jpeg" alt="Blood Titans - Primeros Personajes" style="width: 100%; height: 100%; object-fit: cover;">
-                <button class="like-button" data-item="blooodtitans-1">
-                    <span class="heart">♡</span>
-                    <span class="count">0</span>
-                </button>
                 <div class="card-description">
                     <div class="card-title">Los Protagonistas</div>
                     <div class="card-text">El39, Tron , JL y Crastaco - Los cuatro sobrevivientes de Marte.</div>
@@ -841,10 +841,6 @@
             </div>
             <div class="content-card image-card" data-gallery="blooodtitans">
                 <img src="Imagenes/jl.jpg" alt="Blood Titans - JL" style="width: 100%; height: 100%; object-fit: cover;">
-                <button class="like-button" data-item="blooodtitans-2">
-                    <span class="heart">♡</span>
-                    <span class="count">0</span>
-                </button>
                 <div class="card-description">
                     <div class="card-title">JL</div>
                     <div class="card-text">El personaje que se comunica mediante gemidos .</div>
@@ -852,10 +848,6 @@
             </div>
             <div class="content-card image-card" data-gallery="blooodtitans">
                 <img src="Imagenes/dfg.jpg" alt="Blood Titans" style="width: 100%; height: 100%; object-fit: cover;">
-                <button class="like-button" data-item="blooodtitans-3">
-                    <span class="heart">♡</span>
-                    <span class="count">0</span>
-                </button>
                 <div class="card-description">
                     <div class="card-title">El 39</div>
                     <div class="card-text">Una de las primeras ilustraciones.</div>
@@ -870,10 +862,6 @@
         <div class="content-row">
             <div class="content-card tall image-card" data-gallery="arte">
                 <img src="Imagenes/WhatsApp Image 2026-01-02 at 7.37.04 PM.jpeg" alt="Arte EDD40" style="width: 100%; height: 100%; object-fit: cover;">
-                <button class="like-button" data-item="arte-0">
-                    <span class="heart">♡</span>
-                    <span class="count">0</span>
-                </button>
                 <div class="card-description">
                     <div class="card-title">Recarco de personajes de ross</div>
                     <div class="card-text">Creación artística fan de los personajes de Ross.</div>
@@ -916,10 +904,6 @@
         <div class="content-row featured">
             <div class="content-card tall video-card">
                 <video src="Videos/prueba.mp4" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" muted loop playsinline></video>
-                <button class="like-button" data-item="videos-0">
-                    <span class="heart">♡</span>
-                    <span class="count">0</span>
-                </button>
                 <div class="video-overlay">
                     <div class="video-play-button">▶ Ver Video</div>
                 </div>
@@ -943,10 +927,6 @@
         <div class="content-row">
             <div class="content-card image-card" data-gallery="yo">
                 <img src="Imagenes/YO/20240607_123344.jpg" alt="EDD40" style="width: 100%; height: 100%; object-fit: cover;">
-                <button class="like-button" data-item="yo-0">
-                    <span class="heart">♡</span>
-                    <span class="count">0</span>
-                </button>
                 <div class="card-description">
                     <div class="card-title">EDD40</div>
                     <div class="card-text">El creador detrás de todo esto.</div>
@@ -954,10 +934,6 @@
             </div>
             <div class="content-card image-card" data-gallery="yo">
                 <img src="Imagenes/YO/20240830_081445.jpg" alt="EDD40" style="width: 100%; height: 100%; object-fit: cover;">
-                <button class="like-button" data-item="yo-1">
-                    <span class="heart">♡</span>
-                    <span class="count">0</span>
-                </button>
                 <div class="card-description">
                     <div class="card-title">El golpe</div>
                     <div class="card-text">La mejor foto que mi hermana me pudo sacar.</div>
@@ -965,10 +941,6 @@
             </div>
             <div class="content-card image-card" data-gallery="yo">
                 <img src="Imagenes/YO/6FC74AD5-174E-40EF-BAE9-12F42CDBF5ED.jpg" alt="EDD40" style="width: 100%; height: 100%; object-fit: cover;">
-                <button class="like-button" data-item="yo-2">
-                    <span class="heart">♡</span>
-                    <span class="count">0</span>
-                </button>
                 <div class="card-description">
                     <div class="card-title">Pose de messi</div>
                     <div class="card-text">Pelo mas brocoli que tenia xd.</div>
@@ -976,10 +948,6 @@
             </div>
             <div class="content-card image-card" data-gallery="yo">
                 <img src="Imagenes/YO/IMG_0765.JPG" alt="EDD40" style="width: 100%; height: 100%; object-fit: cover;">
-                <button class="like-button" data-item="yo-3">
-                    <span class="heart">♡</span>
-                    <span class="count">0</span>
-                </button>
                 <div class="card-description">
                     <div class="card-title">Mi Espacio</div>
                     <div class="card-text">Me gusta las computadoras, amo estar en cibers solitarios y frios, tambien un poco oscuros mientras veo algo.</div>
@@ -989,50 +957,75 @@
     </section>
 
     <script>
-        // Sistema de likes con almacenamiento en memoria
-        const likesData = {};
+        // Sistema de likes con almacenamiento persistente
+        const STORAGE_KEY = 'edd40-likes-data';
+        let likesData = {};
+
+        // Cargar likes desde el almacenamiento
+        async function loadLikes() {
+            try {
+                const result = await window.storage.get(STORAGE_KEY);
+                if (result && result.value) {
+                    likesData = JSON.parse(result.value);
+                }
+            } catch (error) {
+                console.log('Iniciando con datos nuevos de likes');
+                likesData = {};
+            }
+        }
+
+        // Guardar likes en el almacenamiento
+        async function saveLikes() {
+            try {
+                await window.storage.set(STORAGE_KEY, JSON.stringify(likesData));
+            } catch (error) {
+                console.error('Error al guardar likes:', error);
+            }
+        }
 
         // Inicializar sistema de likes
-        function initLikes() {
+        async function initLikes() {
+            await loadLikes();
+            
             document.querySelectorAll('.like-button').forEach(btn => {
                 const itemId = btn.getAttribute('data-item');
                 
-                // Inicializar contador si no existe
-                if (!likesData[itemId]) {
-                    likesData[itemId] = {
-                        count: 0,
-                        liked: false
-                    };
+                // Restaurar estado guardado
+                if (likesData[itemId]) {
+                    btn.classList.add('liked');
+                    btn.querySelector('.heart').textContent = '♥';
+                    btn.querySelector('.count').textContent = likesData[itemId];
+                } else {
+                    likesData[itemId] = 0;
                 }
                 
                 // Manejar clicks en botón de like
-                btn.addEventListener('click', (e) => {
+                btn.addEventListener('click', async (e) => {
                     e.stopPropagation();
-                    toggleLike(itemId, btn);
+                    await toggleLike(itemId, btn);
                 });
             });
         }
 
         // Toggle like
-        function toggleLike(itemId, btn) {
+        async function toggleLike(itemId, btn) {
             const heart = btn.querySelector('.heart');
             const count = btn.querySelector('.count');
             
-            if (likesData[itemId].liked) {
+            if (btn.classList.contains('liked')) {
                 // Quitar like
                 btn.classList.remove('liked');
                 heart.textContent = '♡';
-                likesData[itemId].count = Math.max(0, likesData[itemId].count - 1);
-                likesData[itemId].liked = false;
+                likesData[itemId] = Math.max(0, likesData[itemId] - 1);
             } else {
                 // Dar like
                 btn.classList.add('liked');
                 heart.textContent = '♥';
-                likesData[itemId].count++;
-                likesData[itemId].liked = true;
+                likesData[itemId] = (likesData[itemId] || 0) + 1;
             }
             
-            count.textContent = likesData[itemId].count;
+            count.textContent = likesData[itemId];
+            await saveLikes();
         }
 
         // Crear partículas
